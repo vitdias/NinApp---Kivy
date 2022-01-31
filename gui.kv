@@ -1,0 +1,131 @@
+<LoginScreen>:
+
+Screen:
+    MDCard:
+        size_hint: None, None
+        size: 250, 360
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5,}
+        elevation: 10
+        border_radius: 20
+        radius: [15]
+        padding: 25
+        spacing: 25
+        orientation: 'vertical'
+
+        MDLabel:
+            id: welcome_label
+            text: "Bemvindo!"
+            font_size: 30
+            halign: 'center'
+            size_hint_y: None
+            height: self.texture_size[1]
+            padding_y: 15
+
+        MDTextFieldRound:
+            id: user
+            hint_text: "username"
+            icon_right: "account-circle"
+            size_hint_x: None
+            width: 180
+            font_size: 18
+            pos_hint: {'center_x': 0.5}
+
+        MDTextFieldRound:
+            id: password
+            hint_text: "password"
+            icon_right: "eye-off"
+            size_hint_x: None
+            width: 180
+            font_size: 18
+            pos_hint: {'center_x': 0.5}
+            password: True
+
+        MDFillRoundFlatIconButton:
+            text: "LOG IN"
+            icon: "account-arrow-right"
+            font_size: 12
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            theme_text_color : "Primary"
+            text_color : [0,1,0,0]
+            # md_bg_color : [0,1,0,1]
+            on_press: app.login()
+
+        MDRoundFlatIconButton:
+            text: "Register"
+            icon: "account-plus"
+            font_size: 12
+            pos_hint: {'center_x': 0.5}
+            on_press: app.register()
+        
+<RegisterAccScreen>:
+
+    MDCard:
+        size_hint: None, None
+        size: 250, 360
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5,}
+        elevation: 10
+        border_radius: 20
+        radius: [15]
+        padding: 25
+        spacing: 25
+        orientation: 'vertical'
+
+        MDLabel:
+            id: register_label
+            text: "Register"
+            font_size: 30
+            halign: 'center'
+            size_hint_y: None
+            height: self.texture_size[1]
+            padding_y: 15
+
+        MDTextFieldRound:
+            id: user
+            hint_text: "username"
+            size_hint_x: None
+            width: 180
+            font_size: 18
+            pos_hint: {'center_x': 0.5}
+
+        MDTextFieldRound:
+            id: password
+            hint_text: "password"
+            size_hint_x: None
+            width: 180
+            font_size: 18
+            pos_hint: {'center_x': 0.5}
+            password: True
+
+        MDTextFieldRound:
+            id: conf_password
+            hint_text: "confirm your password"
+            size_hint_x: None
+            width: 180
+            font_size: 18
+            pos_hint: {'center_x': 0.5}
+            password: True
+        
+        MDTextFieldRound:
+            id: email
+            hint_text: "email"
+            size_hint_x: None
+            width: 180
+            font_size: 18
+            pos_hint: {'center_x': 0.5}
+
+        MDTextFieldRound:
+            id: conf_email
+            hint_text: "confirm your email"
+            size_hint_x: None
+            width: 180
+            font_size: 18
+            pos_hint: {'center_x': 0.5}
+
+        MDFillRoundFlatIconButton:
+            text: "REGISTER"
+            font_size: 12
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            theme_text_color : "Primary"
+            text_color : [0,1,0,0]
+            on_press: app.register_acc()
+
