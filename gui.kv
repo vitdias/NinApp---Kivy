@@ -1,63 +1,102 @@
-<LoginScreen>:
+ScreenManager:
+    StartScreen:
+    LoginScreen:
+    RegisterAccScreen:
 
-Screen:
-    MDCard:
-        size_hint: None, None
-        size: 250, 360
-        pos_hint: {'center_x': 0.5, 'center_y': 0.5,}
-        elevation: 10
-        border_radius: 20
-        radius: [15]
-        padding: 25
-        spacing: 25
-        orientation: 'vertical'
-
-        MDLabel:
-            id: welcome_label
-            text: "Bemvindo!"
-            font_size: 30
-            halign: 'center'
-            size_hint_y: None
-            height: self.texture_size[1]
-            padding_y: 15
-
-        MDTextFieldRound:
-            id: user
-            hint_text: "username"
-            icon_right: "account-circle"
-            size_hint_x: None
-            width: 180
-            font_size: 18
-            pos_hint: {'center_x': 0.5}
-
-        MDTextFieldRound:
-            id: password
-            hint_text: "password"
-            icon_right: "eye-off"
-            size_hint_x: None
-            width: 180
-            font_size: 18
-            pos_hint: {'center_x': 0.5}
-            password: True
+<StartScreen>:
+    name: "start"
+    Screen:
+        Image:
+            source: "startScreen.png"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5,}
+            # size_hint_y: 1
+            size_hint_x: 2
+            # height: 0.4
+            allow_stretch: True
 
         MDFillRoundFlatIconButton:
-            text: "LOG IN"
+            text: "ENTER"
             icon: "account-arrow-right"
             font_size: 12
-            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-            theme_text_color : "Primary"
-            text_color : [0,1,0,0]
-            # md_bg_color : [0,1,0,1]
-            on_press: app.login()
+            pos_hint: {'center_x': 0.5, 'center_y': 0.1}
+            theme_text_color : "Custom"
+            opposite_text_color: "Primary"
+            md_bg_color: "dc6e4b"
+            on_press: root.manager.current = 'login'
 
-        MDRoundFlatIconButton:
-            text: "Register"
-            icon: "account-plus"
-            font_size: 12
-            pos_hint: {'center_x': 0.5}
-            on_press: app.register()
+
+
+<LoginScreen>:
+    name: "login"
+    Screen:
+        MDCard:
+            size_hint: None, None
+            size: 250, 360
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5,}
+            elevation: 10
+            border_radius: 20
+            radius: [15]
+            padding: 25
+            spacing: 25
+            orientation: 'vertical'
+
+            MDLabel:
+                id: welcome_label
+                text: "Bemvindo!"
+                font_size: 30
+                halign: 'center'
+                size_hint_y: None
+                height: self.texture_size[1]
+                padding_y: 15
+
+            MDTextFieldRound:
+                id: user
+                hint_text: "username"
+                icon_right: "account-circle"
+                size_hint_x: None
+                width: 180
+                font_size: 18
+                pos_hint: {'center_x': 0.5}
+
+            MDTextFieldRound:
+                id: password
+                hint_text: "password"
+                icon_right: "eye-off"
+                size_hint_x: None
+                width: 180
+                font_size: 18
+                pos_hint: {'center_x': 0.5}
+                password: True
+
+            MDFillRoundFlatIconButton:
+                text: "LOG IN"
+                icon: "account-arrow-right"
+                font_size: 12
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                theme_text_color : "Primary"
+                text_color : [0,1,0,0]
+                md_bg_color: "dc6e4b"
+                on_press: root.ids.welcome_label.text = f'Logged as {root.ids.user.text}'
+
+            MDRoundFlatIconButton:
+                text: "Register"
+                icon: "account-plus"
+                icon_color: "dc6e4b"
+                text_color: "dc6e4b"
+                font_size: 12
+                pos_hint: {'center_x': 0.5}
+                line_color: "dc6e4b"
+                on_press: root.manager.transition.direction = 'left'
+                on_press: root.manager.current = 'register'
         
 <RegisterAccScreen>:
+    name: "register"
+    user: user
+    email:email
+    conf_email: conf_email
+    password: password
+    conf_password: conf_password
+    # lbl_out: lbl_out
 
     MDCard:
         size_hint: None, None
@@ -72,7 +111,7 @@ Screen:
 
         MDLabel:
             id: register_label
-            text: "Register"
+            text: "Create Account"
             font_size: 30
             halign: 'center'
             size_hint_y: None
@@ -121,11 +160,27 @@ Screen:
             font_size: 18
             pos_hint: {'center_x': 0.5}
 
-        MDFillRoundFlatIconButton:
-            text: "REGISTER"
+        MDFillRoundFlatButton:
+            text: "                      REGISTER                         "
             font_size: 12
             pos_hint: {'center_x': 0.5, 'center_y': 0.5}
             theme_text_color : "Primary"
             text_color : [0,1,0,0]
-            on_press: app.register_acc()
+            md_bg_color: "dc6e4b"
+            # size_hint: None, None
+            # width: root.width*0.6
+            on_press: root.register_acc()
+
+    MDFillRoundFlatIconButton:
+        text: "BACK"
+        icon: "arrow-left"
+        font_size: 12
+        pos_hint: {'center_x': 0.5, 'center_y': 0.1}
+        md_bg_color: "dc6e4b"
+        theme_text_color : "Primary"
+        text_color : [0,1,0,0]
+        on_press: root.manager.transition.direction = 'right'
+        on_press: root.manager.current = 'login'
+
+
 
